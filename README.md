@@ -1,1 +1,1 @@
-# FreeCodeCamp-JS
+The main aim is to help you solve the tasks from the freecodecamp tutorial. The solution of the individual steps is sometimes confusing and to the user may seem wrong. However, you should follow the individual steps according to the fcc rules (a wrong entry or missing dot prevents you from moving on to the next task). This should be regarded as an aid and not a ready-made solution. Depending on my free time, I would like to post further step-by-step solutions.
