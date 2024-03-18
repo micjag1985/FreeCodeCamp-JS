@@ -21,6 +21,28 @@ const monsterStats = document.querySelector("#monsterStats"); //Step 33
 const monsterName = document.querySelector("#monsterName"); //Step 33
 const monsterHealthText = document.querySelector("#monsterHealth"); //Step 34
 
+
+//Step 79, 80
+const weapons = [
+    {
+        name: "stick",
+        power: 5
+    },
+    {
+        name: "dagger",
+        power: 30
+    },
+    {
+        name: "claw hammer",
+        power: 50
+    },
+    {
+        name: "sword",
+        power: 100
+    }
+];
+
+
 //Step 51, 52, 53, 54, 55, 56, 57, 58, 70
 const locations = [
     {
@@ -106,19 +128,66 @@ function fightDragon() {
     console.log("Fighting dragon.");
 }
 
-//Step 46
+//Step 46, 72, 73, 74, 75, 76, 77, 78
 function buyHealth() {
-
+    // gold: gold = gold - 10;
+    // health: health = health + 10;
+    if (gold >= 10) {
+        gold -= 10;
+        health += 10;
+        goldText.innerText = gold;
+        healthText.innerText = health;
+    } else {
+        text.innerText = "You do not have enough gold to buy health.";
+    }
 }
 
-//Step 46
+//Step 46, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98
 function buyWeapon() {
-
+    // if (currentWeapon < 3) {
+    // if (currentWeapon < weapons.length) {
+    if (currentWeapon < weapons.length - 1) {
+        if (gold >= 30) {
+            gold -= 30;
+            // currentWeapon += 1;
+            currentWeapon++;
+            goldText.innerText =  gold;
+            // let newWeapon = weapons;
+            // let newWeapon = weapons[currentWeapon];
+            let newWeapon = weapons[currentWeapon].name;
+            // text.innerText = "You now have a new weapon.";
+            text.innerText = "You now have a " + newWeapon + ".";   
+            inventory.push(newWeapon);
+            //text.innerText += " In your inventory you have: ";
+            text.innerText += " In your inventory you have: " + inventory;
+        } else {
+            text.innerText = "You do not have enough gold to buy a weapon.";
+        }
+    } else {
+        text.innerText = "You already have the most powerful weapon!";
+        button2.innerText = "Sell weapon for 15 gold";
+        button2.onclick = sellWeapon;
+    }
 }
 
 //Step 46
 //function goTown() {
 //}
+
+//Step 99, 100, 101, 102, 103, 104, 105, 106
+function sellWeapon() {
+    if (inventory.length > 1) {
+        gold += 15;
+        goldText.innerText = gold;
+        //let currentWeapon;
+        let currentWeapon = inventory.shift();
+        text.innerText = "You sold a " + currentWeapon + ".";
+        text.innerText += " In your inventory you have: " + inventory;
+    } else {
+        text.innerText = "Don't sell your only weapon!";
+    }
+}
+
 
 //Step 69
 function fightSlime() {
