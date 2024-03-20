@@ -43,7 +43,28 @@ const weapons = [
 ];
 
 
-//Step 51, 52, 53, 54, 55, 56, 57, 58, 70
+//step 107
+const monsters = [
+    {
+      name: "slime",
+      level: 2,
+      health: 15
+    },
+    {
+      name: "fanged beast",
+      level: 8,
+      health: 60
+    },
+    {
+      name: "dragon",
+      level: 20,
+      health: 300
+    }
+  
+  ]
+
+
+//Step 51, 52, 53, 54, 55, 56, 57, 58, 70, 112
 const locations = [
     {
         name: "town square",
@@ -62,8 +83,14 @@ const locations = [
         "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
         "button functions": [fightSlime, fightBeast, goTown],
         text: "You enter the cave. You see some monsters."
+    },
+    {
+        name: "fight",
+        "button text": ["Attack", "Dodge", "Run"],
+        "button functions": [attack, dodge, goTown],
+        text: "You are fighting a monster."
     }
-]; //Step 51, 52, 53, 54, 55, 56, 57, 58, 70
+]; //Step 51, 52, 53, 54, 55, 56, 57, 58, 70, 112
 
 
 // initialize buttons //Step 39, 40, 41
@@ -123,10 +150,6 @@ function goCave() {
     update(locations[2]);
 }
 
-//Step 38
-function fightDragon() {
-    console.log("Fighting dragon.");
-}
 
 //Step 46, 72, 73, 74, 75, 76, 77, 78
 function buyHealth() {
@@ -189,13 +212,44 @@ function sellWeapon() {
 }
 
 
-//Step 69
+//Step 69, 109
 function fightSlime() {
-
+    fighting = 0;
+    goFight();
 }
 
-//Step 69
+//Step 69, 110
 function fightBeast() {
-  
+    fighting = 1;
+    goFight();
 }
 
+//Step 38, 110
+function fightDragon() {
+    fighting = 2;
+    goFight();
+}
+
+
+//Step 108, 113, 114, 115, 116
+function goFight() {
+    update(locations[3]);
+    monsterHealth = monsters[fighting].health;
+    monsterStats.style.display = "block";
+    monsterName.innerText = monsters[fighting].name;
+    monsterHealthText.innerText = monsterHealth;
+}
+
+//Step 111, 117[I lost 10 minutes to realize that I forgot the "." at the end :)], 118, 119, 120
+function attack() {
+    text.innerText = "The " + monsters[fighting].name + " attacks.";
+    text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+    health -= monsters[fighting].level;
+    monsterHealth -= weapons[currentWeapon].power;
+}
+
+
+//Step 111
+function dodge() {
+
+}
