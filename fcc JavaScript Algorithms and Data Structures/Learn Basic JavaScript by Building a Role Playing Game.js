@@ -240,7 +240,7 @@ function goFight() {
     monsterHealthText.innerText = monsterHealth;
 }
 
-//Step 111, 117[I lost 10 minutes to realize that I forgot the "." at the end :)], 118, 119, 120
+//Step 111, 117[I lost 10 minutes to realize that I forgot the "." at the end :)], 118, 119, 120, 121???
 function attack() {
     text.innerText = "The " + monsters[fighting].name + " attacks.";
     text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
@@ -249,7 +249,7 @@ function attack() {
 }
 
 
-//Step 111
+//Step 111, 
 function dodge() {
 
 }
