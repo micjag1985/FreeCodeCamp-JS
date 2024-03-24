@@ -64,7 +64,7 @@ const monsters = [
   ]
 
 
-//Step 51, 52, 53, 54, 55, 56, 57, 58, 70, 112
+//Step 51, 52, 53, 54, 55, 56, 57, 58, 70, 112, 131
 const locations = [
     {
         name: "town square",
@@ -89,8 +89,14 @@ const locations = [
         "button text": ["Attack", "Dodge", "Run"],
         "button functions": [attack, dodge, goTown],
         text: "You are fighting a monster."
+    },
+    {
+        name: "kill monster",
+        "button text": ["Go to town square", "Go to town square", "Go to town square"],
+        "button functions": [goTown, goTown, goTown],
+        text: "The monster screams Arg! as it dies. You gain experience points and find gold."
     }
-]; //Step 51, 52, 53, 54, 55, 56, 57, 58, 70, 112
+]; //Step 51, 52, 53, 54, 55, 56, 57, 58, 70, 112, 131
 
 
 // initialize buttons //Step 39, 40, 41
@@ -240,16 +246,39 @@ function goFight() {
     monsterHealthText.innerText = monsterHealth;
 }
 
-//Step 111, 117[I lost 10 minutes to realize that I forgot the "." at the end :)], 118, 119, 120, 121???
+//Step 111, 117[I lost 10 minutes to realize that I forgot the "." at the end :)], 118, 119, 120, 121, 122, 123, 124
 function attack() {
     text.innerText = "The " + monsters[fighting].name + " attacks.";
     text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
     health -= monsters[fighting].level;
-    monsterHealth -= weapons[currentWeapon].power;
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp);
+    healthText.innerText = health;
+    monsterHealthText.innerText = monsterHealth;
+    if (health <= 0) {
+        lose();
+    } else if (monsterHealth <= 0) {
+        defeatMonster();
+    }
 }
 
 
-//Step 111, 
+//Step 111, 126
 function dodge() {
+    text.innerText = "You dodge the attack from the " + monsters[fighting].name;
+}
+
+
+//Step 125, 126, 127, 128, 129, 130
+function defeatMonster() {
+    gold += Math.floor(monsters[fighting].level * 6.7);
+    xp += monsters[fighting].level;
+    goldText.innerText = gold;
+    xpText.innerText = xp;
+    update(locations[4]);
+}
+
+
+//Step 125
+function lose() {
 
 }
